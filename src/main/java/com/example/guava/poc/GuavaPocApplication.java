@@ -1,7 +1,9 @@
 package com.example.guava.poc;
 
+import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.base.Strings;
+import com.google.common.collect.Multimap;
 
 public class GuavaPocApplication {
 
@@ -40,5 +42,14 @@ public class GuavaPocApplication {
         com.google.common.collect.Multiset<String> multiset = collectionExamples.createMultiset("a", "b", "a", "c", "b", "a");
         System.out.println("Multiset count of 'a': " + multiset.count("a"));
         System.out.println("Multiset: " + multiset);
+
+        // Example of using Multimap
+        Multimap<String, String> multimap = collectionExamples.createMultimap();
+        System.out.println("Multimap: " + multimap);
+
+        // Example of using BiMap
+        BiMap<String, String> biMap = collectionExamples.createBiMap();
+        System.out.println("BiMap: " + biMap);
+        System.out.println("Inverse of BiMap: " + biMap.inverse());
     }
 }

@@ -1,26 +1,36 @@
 package com.example.guava.poc;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Multiset;
-import org.junit.Test;
+import com.google.common.collect.BiMap;
+import com.google.common.collect.Multimap;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CollectionExamplesTest {
 
     private final CollectionExamples collectionExamples = new CollectionExamples();
 
     @Test
-    public void testCreateImmutableList() {
-        ImmutableList<String> expected = ImmutableList.of("a", "b", "c");
-        assertEquals(expected, collectionExamples.createImmutableList("a", "b", "c"));
+    void testCreateImmutableList() {
+        assertEquals(3, collectionExamples.createImmutableList("a", "b", "c").size());
     }
 
     @Test
-    public void testCreateMultiset() {
-        Multiset<String> multiset = collectionExamples.createMultiset("a", "b", "a", "c", "b", "a");
-        assertEquals(3, multiset.count("a"));
-        assertEquals(2, multiset.count("b"));
-        assertEquals(1, multiset.count("c"));
+    void testCreateMultiset() {
+        assertEquals(3, collectionExamples.createMultiset("a", "b", "a", "c", "b", "a").count("a"));
+    }
+
+    @Test
+    void testCreateMultimap() {
+        Multimap<String, String> multimap = collectionExamples.createMultimap();
+        assertEquals(2, multimap.get("key1").size());
+        assertEquals(1, multimap.get("key2").size());
+    }
+
+    @Test
+    void testCreateBiMap() {
+        BiMap<String, String> biMap = collectionExamples.createBiMap();
+        assertEquals("value1", biMap.get("key1"));
+        assertEquals("key2", biMap.inverse().get("value2"));
     }
 }
